@@ -1,110 +1,205 @@
-[![DOI](https://zenodo.org/badge/582718021.svg)](https://zenodo.org/doi/10.5281/zenodo.12507163)
+<div align="center">
 
-<h1 align="center">Diet Recommendation System</h1>
-<div align= "center"><img src="Assets/logo_img1.jpg" />
-  <h4>A diet recommendation web application using content-based approach with Scikit-Learn, FastAPI and Streamlit.</h4>
+# 🥗 Nutrify
+
+**Smart Diet & Nutrition Recommendation Platform**
+
+A machine-learning powered web app that recommends recipes based on your nutritional goals, identifies food from photos using AI, and helps you track your daily nutrition — built with Streamlit, FastAPI, and Scikit-learn.
+
+<img src="Assets/logo_img1.jpg" width="500"/>
+
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-FF4B4B?logo=streamlit&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 </div>
 
-# Diet-Recommendation-System
+---
 
-## :bookmark_tabs:Table of contents
-* [General info](#general-info)
-* [Development](#development)
-* [Technologies](#technologies)
-* [Setup](#setup)
+## 📖 Table of Contents
 
-## :scroll: General info
-### Motivation
-People from all around the world are getting more concerned in their health and way of life in today's modern environment. However, avoiding junk food and exercising alone are insufficient; we also need to eat a balanced diet. We can live a healthy life with a balanced diet based on our height, weight, and age. Your diet can help you achieve and maintain a healthy weight, lower your chance of developing chronic diseases (including cancer and heart disease), and improve your general health when combined with physical activity. Nevertheless, there is a little SOTA project on food/diet recommendation system. Therefore I got the idea to build a content-based recommendation system for this purpose using machine learning. 
-### What is a food recommendation engine?
-A food recommendation engine using a content-based approach is an important tool for promoting healthy eating habits. This type of engine uses information about the nutritional content and ingredients of foods to make personalized recommendations to users. One of the key advantages of a content-based approach is that it takes into account an individual's dietary restrictions and preferences, such as allergies or food preferences. By providing users with tailored recommendations, a content-based food recommendation engine can help them make better choices about what to eat and improve their overall health. Additionally, by recommending a variety of healthy foods, it can also help users to discover new and nutritious options, expand their dietary horizons and overcome food boredom. All these can lead to a better and well-rounded diet, which can have a positive impact on long-term health outcomes.
+- [About](#-about)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Architecture](#-architecture)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Usage](#-usage)
+- [Dataset](#-dataset)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-### What is a content-based recommendation engine?
-A content-based recommendation engine is a type of recommendation system that uses the characteristics or content of an item to recommend similar items to users. It works by analyzing the content of items, such as text, images, or audio, and identifying patterns or features that are associated with certain items. These patterns or features are then used to compare items and recommend similar ones to users.
-<div align= "center"><img src="Assets/content_based_img.webp" /></div>
+---
 
-### Why content-based approach?
+## 📌 About
 
-* No data from other users is required to start making recommendations.
-* Recommendations are highly relevant to the user.
-* Recommendations are transparent to the user.
-* You avoid the “cold start” problem. 
-* Content-based filtering systems are generally easier to create.
+Eating well is hard when nutrition advice is generic and disconnected from what's actually in your kitchen. **Nutrify** solves this with a content-based recommendation engine that suggests recipes matched to your exact nutritional targets and available ingredients — plus an AI vision model that can identify a meal from a photo and pull up its nutrition facts instantly.
 
-### Challenges of content-based approach
-* There’s a lack of novelty and diversity.
-* Scalability is a challenge.
-* Attributes may be incorrect or inconsistent. 
+The goal: make personalized, data-driven nutrition guidance something anyone can use in seconds, not something that requires a nutritionist.
 
-## :computer:Development
-### Model developement
-The recommendation engine is built using Nearest Neighbors alogrithm which is an unsupervised learner for implementing neighbor searches. It acts as a uniform interface to three different nearest neighbors algorithms: BallTree, KDTree, and a brute-force algorithm based on routines in sklearn.metrics.pairwise. For our case, we used the brute-force algorithm using cosine similarity due to its fast computation for small datasets.
+---
 
-$$cos(theta) = (A * B) / (||A|| * ||B||)$$
+## ✨ Features
 
-### Dataset
-I used Food.com kaggle dataset Data with over 500,000 recipes and 1,400,000 reviews from Food.com. Visit this [kaggle](https://www.kaggle.com/datasets/irkaal/foodcom-recipes-and-reviews?select=recipes.csv) link for more details.
-### Backend Developement
-The application is built using the FastAPI framework, which allows for the creation of fast and efficient web APIs. When a user makes a request to the API (user data,nutrition data...) the model is used to generate a list of recommended food similar/suitable to his request (data) which are then returned to the user via the API.
+| Feature | Description |
+|---|---|
+| 🔐 **Authentication** | Simple, secure login gating access to the app |
+| 💪 **Diet Recommendation** | Get a personalized diet plan from your age, weight, height, and goals |
+| 🔍 **Custom Food Recommendation** | Set nutritional targets and preferred ingredients to get matching recipes, ranked by similarity |
+| 📸 **AI Image Food Tracking** | Upload a food photo — a fine-tuned vision model identifies the dish and fetches its nutrition profile automatically |
+| 🥗 **Daily Nutrition Tracker** | Log meals throughout the day and monitor intake against your targets |
 
-### Frontend Developement
+---
 
-The application's front-end is made with Streamlit. Streamlit is an open source app framework in Python language. It helps to create web apps for data science and machine learning in a short time. It is compatible with major Python libraries such as scikit-learn, Keras, PyTorch, SymPy(latex), NumPy, pandas, Matplotlib etc. For our case the front-end is composed of three web pages. The main page is Hello.py which is a welcoming page used to introduce you to my project. The side bar on the left allows the user to navigate too the automatic diet recommendation page and the custom food recommendation page. In the diet recommendation page the user can fill information about his age,weight,height.. and gets a diet recommendation based on his information. Besides, the custom food recommendation allows the user to specify more his food preferency using nutritional values.
+## 🧰 Tech Stack
 
-### Deployement using Docker
-#### Why Docker?
-By using Docker, you can ensure that the environment in which the application is exactly the same as the environment in which it was built, which can help prevent unexpected issues and improve model performance. Additionally, Docker allows for easy scaling and management of the deployment, making it a great choice for larger machine learning projects.
-#### Docker-Compose
-My project is composed of different services (frontend,API). Therefore, our application should run on multiple containers. With the help of Docker-compose we can share our application using the yaml file that define the services that runs together.
+**Frontend**
+- Streamlit — multi-page interactive UI
 
-### Project Architecture
+**Backend**
+- FastAPI — REST API serving recommendations
+- Uvicorn — ASGI server
 
-<div align= "center"><img src="Assets/Architecture_diagram.png" width="600" height="400"/></div>
+**Machine Learning / AI**
+- Scikit-learn — Nearest Neighbors content-based recommender (cosine similarity)
+- Hugging Face Transformers — image classification pipeline for food detection
 
+**Data**
+- Pandas / NumPy
 
-## :rocket: Technologies
-The project is created with:
-* Python: 3.10.8
-* fastapi 0.88.0
-* uvicorn 0.20.0
-* scikit-learn 1.1.3
-* Pandas: 1.5.1
-* Streamlit: 1.16.0
-* streamlit-echarts 1.24.1
-* Numpy: 1.21.5
-* beautifulsoup4 4.11.1
+**Infrastructure**
+- Docker & Docker Compose — containerized multi-service deployment
 
-![](https://img.icons8.com/color/48/null/python--v1.png)![](https://img.icons8.com/color/48/null/numpy.png)![](Assets/streamlit-icon-48x48.png)![](Assets/fastapi.ico)![](Assets/scikit-learn.ico) ![](https://img.icons8.com/color/48/null/pandas.png)
+---
 
-## :whale: Setup
+## 🏗 Architecture
 
-### Run it locally
-#### Clone the repo
+<div align="center">
+<img src="Assets/Architecture_diagram.png" width="600"/>
+</div>
+
+The recommendation engine is powered by a **Nearest Neighbors** model using brute-force search with cosine similarity:
+
+$$\cos(\theta) = \frac{A \cdot B}{\|A\| \, \|B\|}$$
+
+This content-based approach means recommendations are generated purely from recipe/nutrition attributes — no other users' data is needed, there's no cold-start problem, and results stay transparent and explainable.
+
+The Image Food Tracking feature runs a food-specific image classification model, matches the predicted label against the nutrition dataset (with fuzzy matching to handle naming differences), and falls back to manual selection when there's no confident match.
+
+---
+
+## 📂 Project Structure
+
 ```
-$ git clone https://github.com/zakaria-narjis/Diet-Recommendation-System
+Nutrify/
+├── Streamlit_Frontend/
+│   ├── Hello.py                    # Login / entry point
+│   ├── auth.py                     # Authentication logic
+│   ├── Generate_Recommendations.py
+│   ├── ImageFinder/
+│   ├── pages/
+│   │   ├── Home.py
+│   │   ├── 1_💪_Diet_Recommendation.py
+│   │   ├── 2_🔍_Custom_Food_Recommendation.py
+│   │   ├── 3_📸_Image_Food_Tracking.py
+│   │   └── 4_🥗_Daily_Nutrition_Tracker.py
+│   ├── Dockerfile
+│   └── requirements.txt
+│
+├── FastAPI_Backend/
+│   ├── main.py
+│   ├── model.py
+│   ├── nutrition.py
+│   ├── db.py
+│   ├── config.py
+│   ├── image_finder.py
+│   └── Dockerfile
+│
+├── Data/
+│   └── Indian_Food_Nutrition_Processed.csv
+│
+├── Assets/
+├── docker-compose.yml
+└── README.md
 ```
-### docker-compose
-In the project root run:
-```
-$ docker-compose up -d --build
-```
-Then open http://localhost:8501 and enjoy :smiley:.
 
-PS: You should have docker and docker-compose already installed
-### Use the hosted version on Streamlit Cloud
+---
 
-https://diet-recommendation-system.streamlit.app/
+## 🚀 Getting Started
 
-## Citation
+### Prerequisites
+- [Docker](https://www.docker.com/) & Docker Compose (recommended), **or**
+- Python 3.10+ if running services individually
+
+
+### Option A — Run with Docker (recommended)
+```bash
+docker-compose up -d --build
 ```
-@software{narjis_2024_12507829,
-  author       = {Narjis, Zakaria},
-  title        = {Diet recommendation system},
-  month        = jun,
-  year         = 2024,
-  publisher    = {Zenodo},
-  version      = {v1.0.1},
-  doi          = {10.5281/zenodo.12507829},
-  url          = {https://doi.org/10.5281/zenodo.12507829}
-}
+App will be available at **http://localhost:8501**
+
+### Option B — Run locally without Docker
+
+**Frontend**
+```bash
+cd Streamlit_Frontend
+pip install -r requirements.txt
+streamlit run Hello.py
 ```
+
+**Backend**
+```bash
+cd FastAPI_Backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+---
+
+## 🖥 Usage
+
+1. Log in through the entry page.
+2. Choose a page from the sidebar:
+   - **Diet Recommendation** for a full personalized plan
+   - **Custom Food Recommendation** to set your own nutrition targets/ingredients
+   - **Image Food Tracking** to snap or upload a photo and get instant nutrition info
+   - **Daily Nutrition Tracker** to log meals and monitor your intake
+3. Browse and explore recommended recipes with full nutrition breakdowns and instructions.
+
+---
+
+## 📊 Dataset
+
+- Recipe recommendations are trained on the [Food.com Recipes & Reviews dataset](https://www.kaggle.com/datasets/irkaal/foodcom-recipes-and-reviews) (500K+ recipes, 1.4M+ reviews).
+- Image-based food detection is matched against a processed Indian food nutrition dataset in `Data/`.
+
+> **Note:** Large raw data files are excluded from version control. Place your dataset copy in `Data/` before running the app.
+
+---
+
+## 🗺 Roadmap
+
+- [ ] Expand AI food detection to more cuisines
+- [ ] Add user-specific saved recipes / favorites
+- [ ] Weekly/monthly nutrition analytics dashboard
+- [ ] Mobile-friendly UI improvements
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome. Please open an issue to discuss what you'd like to change before submitting a pull request.
+
+1. Fork the repo
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes
+4. Push and open a PR
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for details.
